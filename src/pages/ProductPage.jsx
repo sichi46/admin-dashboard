@@ -1,8 +1,11 @@
 import React from "react";
-import Header from "../components/common/Header";
 import { motion } from "framer-motion";
-import StatCard from "../components/common/StatCard";
 import { Package, TrendingUp, AlertTriangle, DollarSign } from "lucide-react";
+import Header from "../components/common/Header";
+import StatCard from "../components/common/StatCard";
+import ProductsTable from "../components/products/ProductsTable";
+import SalesTrendChart from "../components/products/SalesTrendChart";
+import CategoryDistributionChart from "../components/common/CategoryDistributionChart";
 
 const ProductPage = () => {
   return (
@@ -41,6 +44,14 @@ const ProductPage = () => {
             color="#ef4444"
           />
         </motion.div>
+
+        <ProductsTable />
+
+        {/* CHARTS */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <SalesTrendChart />
+          <CategoryDistributionChart />
+        </div>
       </main>
     </div>
   );

@@ -79,7 +79,7 @@ const SideBar = () => {
         </motion.button>
         <nav className="mt-8 flex-grow">
           {SIDEBAR_ITEMS.map((item) => (
-            <Link Key={item.href} to={item.href}>
+            <Link key={item.href} to={item.href}>
               <motion.div className="flex items-center p-4 text-sm font-medium rounded-lg hover:bg-gray-400 transition-colors mb-2">
                 <item.icon
                   size={20}

@@ -5,7 +5,7 @@ import StatCard from "../components/common/StatCard";
 import { BarChart2, ShoppingBag, Users, Zap } from "lucide-react";
 import SalesOverviewChart from "../components/overview/SalesOverviewChart";
 import SalesChannelChart from "../components/overview/SalesChannelChart";
-import CategoryDistributionChart from "../components/overview/CategoryDistributionChart";
+import CategoryDistributionChart from "../components/common/CategoryDistributionChart";
 
 const OverviewPage = () => {
   return (
