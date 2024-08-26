@@ -3,11 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import ProductPage from "./pages/ProductPage";
 import OverviewPage from "./pages/OverviewPage";
 import SideBar from "./components/common/SideBar";
-import UsersPage from "./pages/UsersPage";
 import SalesPage from "./pages/SalesPage";
 import OrdersPage from "./pages/OrdersPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import SettingsPage from "./pages/SettingsPage";
+import UsersPage from "./pages/UsersPage";
 
 const App = () => {
   return (
