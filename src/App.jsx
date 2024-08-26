@@ -4,6 +4,10 @@ import ProductPage from "./pages/ProductPage";
 import OverviewPage from "./pages/OverviewPage";
 import SideBar from "./components/common/SideBar";
 import UserPage from "./pages/UserPage";
+import SalesPage from "./pages/SalesPage";
+import OrdersPage from "./pages/OrdersPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import SettingsPage from "./pages/SettingsPage";
 
 const App = () => {
   return (
@@ -19,6 +23,10 @@ const App = () => {
         <Route path="/" element={<OverviewPage />} />
         <Route path="/products" element={<ProductPage />} />
         <Route path="/users" element={<UserPage />} />
+        <Route path="/sales" element={<SalesPage />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/analytics" element={<AnalyticsPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
       </Routes>
     </div>
   );
