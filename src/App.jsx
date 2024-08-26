@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import ProductPage from "./pages/ProductPage";
 import OverviewPage from "./pages/OverviewPage";
 import SideBar from "./components/common/SideBar";
-import UserPage from "./pages/Userpage";
+import UserPage from "./pages/UserPage";
 
 const App = () => {
   return (
