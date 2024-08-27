@@ -4,6 +4,7 @@ import Profile from "../components/settings/Profile";
 import Notifications from "../components/settings/Notifications";
 import Security from "../components/settings/Security";
 import ConnectedAccounts from "../components/settings/ConnectedAccounts";
+import DangerZone from "../components/settings/DangerZone";
 
 const SettingsPage = () => {
   return (
@@ -14,6 +15,7 @@ const SettingsPage = () => {
         <Notifications />
         <Security />
         <ConnectedAccounts />
+        <DangerZone />
       </main>
     </div>
   );

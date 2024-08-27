@@ -15,6 +15,7 @@ const ToggleSwitch = ({ label, isOn, OnToggle }) => {
             ${isOn ? "translate-x-6" : "translate-x-1"}
             `}
         />
+        ;
       </button>
     </div>
   );
