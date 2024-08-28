@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Package, TrendingUp, AlertTriangle, DollarSign } from "lucide-react";
 import Header from "../components/common/Header";
@@ -6,8 +6,24 @@ import StatCard from "../components/common/StatCard";
 import ProductsTable from "../components/products/ProductsTable";
 import SalesTrendChart from "../components/products/SalesTrendChart";
 import CategoryDistributionChart from "../components/common/CategoryDistributionChart";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 const ProductPage = () => {
+  const [products, setProducts] = useState([]);
+
+  const { isLoading } = useQuery(
+    "getAllProducts",
+    async () => {
+      const res = await axios.get("http://localhost:8000/product/all");
+      return res.data;
+    },
+    {
+      onSuccess(data) {
+        setProducts(data);
+      },
+    }
+  );
   return (
     <div className="flex-1 overflow-auto relative z-10">
       <Header title="Products" />
@@ -22,7 +38,7 @@ const ProductPage = () => {
           <StatCard
             name="Total Products"
             icon={Package}
-            value="1234"
+            value={`${products.length}`}
             color="#6366F1"
           />
           <StatCard

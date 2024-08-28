@@ -2,53 +2,42 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Edit, Search, Trash2 } from "lucide-react";
 import { useState } from "react";
-
-const PRODUCT_DATA = [
-  {
-    id: 1,
-    name: "Wireless Earbuds",
-    category: "Electronics",
-    price: 59.99,
-    stock: 143,
-    sales: 1200,
-  },
-  {
-    id: 2,
-    name: "Leather Wallet",
-    category: "Accessories",
-    price: 39.99,
-    stock: 89,
-    sales: 800,
-  },
-  {
-    id: 3,
-    name: "Smart Watch",
-    category: "Electronics",
-    price: 199.99,
-    stock: 56,
-    sales: 650,
-  },
-  {
-    id: 4,
-    name: "Yoga Mat",
-    category: "Fitness",
-    price: 29.99,
-    stock: 210,
-    sales: 950,
-  },
-  {
-    id: 5,
-    name: "Coffee Maker",
-    category: "Home",
-    price: 79.99,
-    stock: 78,
-    sales: 720,
-  },
-];
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import axios from "axios";
 
 const ProductsTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState(PRODUCT_DATA);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const client = useQueryClient();
+
+  const { isLoading } = useQuery(
+    "getAllProducts",
+    async () => {
+      const res = await axios.get("http://localhost:8000/product/all");
+      return res.data;
+    },
+    {
+      onSuccess(data) {
+        setFilteredProducts(data);
+      },
+    }
+  );
+
+  const { mutate } = useMutation(
+    "deleteProductById",
+    async (data) => {
+      const id = 7;
+      const res = await axios.delete(
+        `http://localhost:8000/product/${data.id}`
+      );
+      return res.data;
+    },
+    {
+      onSuccess() {
+        client.invalidateQueries("getAllProducts");
+      },
+    }
+  );
 
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
@@ -60,6 +49,10 @@ const ProductsTable = () => {
     );
     setFilteredProducts(filtered);
   };
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
   return (
     <motion.div
       className="bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700 mb-8"
@@ -105,7 +98,7 @@ const ProductsTable = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-700">
-            {filteredProducts.map((product) => (
+            {filteredProducts?.map((product) => (
               <motion.tr
                 key={product.id}
                 initial={{ opacity: 0 }}
@@ -140,6 +133,7 @@ const ProductsTable = () => {
                   </button>
                   <button>
                     <Trash2
+                      onClick={() => mutate(product)}
                       size={18}
                       className="text-red-400 hover:text-red-300"
                     />
